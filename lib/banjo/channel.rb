@@ -16,7 +16,7 @@ module Banjo
 
     def initialize(tick)
       @output = UniMIDI::Output.all[channel]
-      @tick = tick
+      @tick   = tick
     end
 
     def tick_note(tick, note, velocity = 50, duration = 0.5)
@@ -28,12 +28,14 @@ module Banjo
     end
 
     def play_note(note, velocity = 50, duration = 0.5)
-      Thread.new do
-        output.open do |o|
-          o.puts(0x80, note, velocity)
-          sleep(duration)
-          o.puts(0x90, note, velocity)
-        end
+      Thread.new { play_note!(note, velocity, duration) }
+    end
+
+    def play_note!(note, velocity = 50, duration = 0.5)
+      output.open do |o|
+        o.puts(0x80, note, velocity)
+        sleep(duration)
+        o.puts(0x90, note, velocity)
       end
     end
   end
