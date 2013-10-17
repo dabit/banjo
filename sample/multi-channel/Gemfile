@@ -2,4 +2,4 @@
 source "https://rubygems.org"
 
 gem "rubysl"
-gem "banjo", path: '../'
+gem "banjo", path: '../..'
