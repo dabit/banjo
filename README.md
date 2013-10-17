@@ -1,24 +1,16 @@
 # Banjo
 
-TODO: Write a gem description
+MIDI Looper designed for Live performances
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-    gem 'banjo'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
+Install it:
 
     $ gem install banjo
 
 ## Usage
 
-TODO: Write usage instructions here
+See the `sample/` folder.
 
 ## Contributing
 
