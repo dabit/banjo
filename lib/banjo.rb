@@ -35,6 +35,8 @@ module Banjo
 
         n < 15 ? n += 1 : n = 0
       end
+
+      puts "Banjo Reactor started..."
     end
   end
 end
