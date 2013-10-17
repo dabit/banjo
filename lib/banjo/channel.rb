@@ -2,6 +2,10 @@ module Banjo
   class Channel
     attr_accessor :output, :tick
 
+    def channel
+      0
+    end
+
     def self.channels
       @channels ||= []
     end
