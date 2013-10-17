@@ -10,7 +10,10 @@ Install it:
 
 ## Usage
 
-See the `sample/` folder.
+Promise to come back to write a guide, for now all I can say is go to the
+`sample` folder and run:
+
+    $ ruby song.rb
 
 ## Contributing
 
