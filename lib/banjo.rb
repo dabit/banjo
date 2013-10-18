@@ -17,6 +17,11 @@ module Banjo
   end
 
   def self.load_channels
+    load_channels!
+  rescue Exception
+  end
+
+  def self.load_channels!
     Dir['./channels/*.rb'].each do |file|
       load file
     end
@@ -31,10 +36,7 @@ module Banjo
     EventMachine.run do
       n = 0
       EM.add_periodic_timer(tempo_in_ms) do
-        begin
-          Banjo.load_channels
-        rescue Exception
-        end
+        Banjo.load_channels if n == 0
 
         Banjo::Channel.channels.each do |klass|
           channel = klass.new(n)
