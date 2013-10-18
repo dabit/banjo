@@ -9,7 +9,10 @@ $: << '.'
 
 module Banjo
   class << self
+    attr_accessor :beats_per_measure
+    attr_accessor :measures_per_loop
     attr_accessor :tempo
+    attr_accessor :ticks_per_beat
     attr_accessor :ticks_per_period
   end
 
@@ -20,8 +23,9 @@ module Banjo
   end
 
   def self.play
-    # TODO: Figure out where does this 8.0 comes from
-    tempo_in_ms = 60.0 / Banjo.tempo / 8.0
+    Banjo.measures_per_loop ||= 1
+    Banjo.ticks_per_period = Banjo.ticks_per_beat * Banjo.beats_per_measure * Banjo.measures_per_loop
+    tempo_in_ms = 60.0 / Banjo.tempo / Banjo.ticks_per_beat
     puts "Beat every: #{tempo_in_ms}"
 
     EventMachine.run do

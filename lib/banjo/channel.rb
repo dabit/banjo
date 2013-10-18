@@ -29,7 +29,7 @@ module Banjo
     end
 
     def play_note(note, velocity = 50, duration = DEFAULT_DURATION)
-      Thread.new { play_note!(note, velocity, duration) }
+      EM.defer { play_note!(note, velocity, duration) }
     end
 
     def arpeggio(notes, velocity = 50)
