@@ -7,6 +7,10 @@ module Banjo
       0
     end
 
+    def midi_channels
+      [0x90, 0x80]
+    end
+
     def self.channels
       @channels ||= []
     end
@@ -62,9 +66,9 @@ module Banjo
     end
 
     def play_note!(note, velocity = 50, duration = DEFAULT_DURATION)
-      output.puts(0x80, note, velocity)
+      output.puts(midi_channels[0], note, velocity)
       sleep(duration)
-      output.puts(0x90, note, velocity)
+      output.puts(midi_channels[1], note, velocity)
     end
   end
 end
