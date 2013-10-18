@@ -46,6 +46,10 @@ module Banjo
       output.puts 0xE0, 0, value
     end
 
+    def sustain(value = 0)
+      output.puts 0xB0, 0x40, value
+    end
+
     def arpeggio(notes, velocity = 50)
       step = (1.0 * Banjo.ticks_per_period / notes.size).round
       notes.each_with_index do |note, index|
