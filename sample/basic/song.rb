@@ -2,5 +2,6 @@ require 'bundler'
 Bundler.require
 
 Banjo.load_channels
-Banjo.tempo = 60.0
+Banjo.tempo = 100.0
+Banjo.ticks_per_period = 32
 Banjo.play
