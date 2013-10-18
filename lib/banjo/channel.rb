@@ -34,8 +34,8 @@ module Banjo
       end
     end
 
-    def mod_note(mod, note, offset = 0, velocity = 50)
-      play_note(note, velocity, DEFAULT_DURATION) if ((tick + offset) % mod == 0)
+    def mod_note(mod, note, offset = 0, velocity = 50, duration = DEFAULT_DURATION)
+      play_note(note, velocity, duration) if ((tick + offset) % mod == 0)
     end
 
     def play_note(note, velocity = 50, duration = DEFAULT_DURATION)
