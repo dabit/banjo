@@ -1,6 +1,7 @@
 module Banjo
   class Channel
     attr_accessor :output, :tick
+    DEFAULT_DURATION = 0.5
 
     def channel
       0
@@ -19,15 +20,15 @@ module Banjo
       @tick   = tick
     end
 
-    def tick_note(tick, note, velocity = 50, duration = 0.5)
+    def tick_note(tick, note, velocity = 50, duration = DEFAULT_DURATION)
       play_note(note, velocity, duration) if tick == self.tick
     end
 
     def mod_note(mod, note, offset = 0, velocity = 50)
-      play_note(note, velocity, 0.5) if ((tick + offset) % mod == 0)
+      play_note(note, velocity, DEFAULT_DURATION) if ((tick + offset) % mod == 0)
     end
 
-    def play_note(note, velocity = 50, duration = 0.5)
+    def play_note(note, velocity = 50, duration = DEFAULT_DURATION)
       Thread.new { play_note!(note, velocity, duration) }
     end
 
@@ -38,7 +39,7 @@ module Banjo
       end
     end
 
-    def play_note!(note, velocity = 50, duration = 0.5)
+    def play_note!(note, velocity = 50, duration = DEFAULT_DURATION)
       output.open do |o|
         o.puts(0x80, note, velocity)
         sleep(duration)

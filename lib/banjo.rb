@@ -20,7 +20,9 @@ module Banjo
   end
 
   def self.play
-    tempo_in_ms = 60.0 / Banjo.tempo / ticks_per_period
+    # TODO: Figure out where does this 8.0 comes from
+    tempo_in_ms = 60.0 / Banjo.tempo / 8.0
+    puts "Beat every: #{tempo_in_ms}"
 
     EventMachine.run do
       n = 0
