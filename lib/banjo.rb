@@ -33,6 +33,7 @@ module Banjo
       EM.add_periodic_timer(tempo_in_ms) do
         begin
           Banjo.load_channels
+        rescue Exception
         end
 
         Banjo::Channel.channels.each do |klass|
