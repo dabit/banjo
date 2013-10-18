@@ -10,6 +10,7 @@ $: << '.'
 module Banjo
   class << self
     attr_accessor :tempo
+    attr_accessor :ticks_per_period
   end
 
   def self.load_channels
@@ -19,7 +20,7 @@ module Banjo
   end
 
   def self.play
-    tempo_in_ms = 60.0 / Banjo.tempo / 16
+    tempo_in_ms = 60.0 / Banjo.tempo / ticks_per_period
 
     EventMachine.run do
       n = 0
@@ -33,7 +34,7 @@ module Banjo
           channel.perform
         end
 
-        n < 15 ? n += 1 : n = 0
+        n < (ticks_per_period - 1) ? n += 1 : n = 0
       end
 
       puts "Banjo Reactor started..."

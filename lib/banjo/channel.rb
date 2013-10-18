@@ -31,6 +31,13 @@ module Banjo
       Thread.new { play_note!(note, velocity, duration) }
     end
 
+    def arpeggio(notes, velocity = 50)
+      step = (1.0 * Banjo.ticks_per_period / notes.size).round
+      notes.each_with_index do |note, index|
+        tick_note((index * step), note, velocity)
+      end
+    end
+
     def play_note!(note, velocity = 50, duration = 0.5)
       output.open do |o|
         o.puts(0x80, note, velocity)
