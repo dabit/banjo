@@ -14,6 +14,7 @@ module Banjo
     attr_accessor :tempo
     attr_accessor :ticks_per_beat
     attr_accessor :ticks_per_period
+    attr_accessor :loop_count
   end
 
   def self.load_channels
@@ -34,19 +35,31 @@ module Banjo
     puts "Beat every: #{tempo_in_ms}"
 
     EventMachine.run do
-      n = 0
+      tick = 0
+      self.loop_count = 0
+
       EM.add_periodic_timer(tempo_in_ms) do
-        Banjo.load_channels if n == 0
+        Banjo.load_channels if tick == 0
 
         Banjo::Channel.channels.each do |klass|
-          channel = klass.new(n)
+          channel = klass.new(tick)
           channel.perform
         end
 
-        n < (ticks_per_period - 1) ? n += 1 : n = 0
+        tick = update_counters(tick)
       end
 
       puts "Banjo Reactor started..."
     end
+  end
+
+  def self.update_counters(tick)
+    if tick < (ticks_per_period - 1)
+      tick += 1
+    else
+      puts self.loop_count += 1
+      tick = 0
+    end
+    tick
   end
 end
