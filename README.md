@@ -56,4 +56,4 @@ reactor is running and you will notice the changes in realtime.
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-[1]:[http://www.youtube.com/watch?v=hgFA_fdup7g]
+[1]:http://www.youtube.com/watch?v=hgFA_fdup7g
