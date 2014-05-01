@@ -9,6 +9,7 @@ $: << '.'
 
 module Banjo
   class << self
+    attr_accessor :tick
     attr_accessor :beats_per_measure
     attr_accessor :measures_per_loop
     attr_accessor :tempo
@@ -35,18 +36,18 @@ module Banjo
     puts "Beat every: #{tempo_in_ms}"
 
     EventMachine.run do
-      tick = 0
+      Banjo.tick = 0
       self.loop_count = 0
 
       EM.add_periodic_timer(tempo_in_ms) do
-        Banjo.load_channels if tick == 0
+        Banjo.load_channels if Banjo.tick == 0
 
         Banjo::Channel.channels.each do |klass|
-          channel = klass.new(tick)
+          channel = klass.new
           channel.perform
         end
 
-        tick = update_counters(tick)
+        Banjo.tick = update_counters(Banjo.tick)
       end
 
       puts "Banjo Reactor started..."

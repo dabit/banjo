@@ -1,6 +1,6 @@
 module Banjo
   class Channel
-    attr_accessor :output, :tick
+    attr_accessor :output
     DEFAULT_DURATION = 0.5
 
     def channel
@@ -19,13 +19,12 @@ module Banjo
       channels << child
     end
 
-    def initialize(tick)
+    def initialize
       @output = UniMIDI::Output.all[channel]
-      @tick   = tick
     end
 
     def tick_note(tick, note, velocity = 50, duration = DEFAULT_DURATION)
-      play_note(note, velocity, duration) if tick == self.tick
+      play_note(note, velocity, duration) if tick == Banjo.tick
     end
 
     def tick_notes(notes, velocity = 50, duration = DEFAULT_DURATION)
@@ -35,7 +34,7 @@ module Banjo
     end
 
     def mod_note(mod, note, offset = 0, velocity = 50, duration = DEFAULT_DURATION)
-      play_note(note, velocity, duration) if ((tick + offset) % mod == 0)
+      play_note(note, velocity, duration) if ((Banjo.tick + offset) % mod == 0)
     end
 
     def play_note(note, velocity = 50, duration = DEFAULT_DURATION)
