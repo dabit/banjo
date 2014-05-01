@@ -7,6 +7,10 @@ module Banjo
       0
     end
 
+    def play(note)
+      Note.new(self, note)
+    end
+
     def midi_channels
       [0x90, 0x80]
     end
@@ -21,10 +25,6 @@ module Banjo
 
     def initialize
       @output = UniMIDI::Output.all[channel]
-    end
-
-    def tick_note(tick, note, velocity = 50, duration = DEFAULT_DURATION)
-      play_note(note, velocity, duration) if tick == Banjo.tick
     end
 
     def tick_notes(notes, velocity = 50, duration = DEFAULT_DURATION)

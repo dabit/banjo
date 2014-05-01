@@ -9,17 +9,6 @@ class ChannelTest < Test::Unit::TestCase
     assert_equal 0, subject.channel
   end
 
-  def test_tick_note_plays
-    Banjo.tick = 0
-    mock(subject).play_note(15, 50, 0.5)
-    subject.tick_note(0, 15)
-  end
-
-  def test_tick_note_does_not_play
-    mock(subject).play_note(15, 50, 0.5).never
-    subject.tick_note(3, 15)
-  end
-
   def test_mod_note_when_note_plays
     [0, 4, 8, 12].each do |tick|
       Banjo.tick = tick

@@ -4,6 +4,7 @@ require 'eventmachine'
 require 'unimidi'
 
 require 'banjo/channel'
+require 'banjo/note'
 
 $: << '.'
 
