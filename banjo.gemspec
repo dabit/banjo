@@ -21,6 +21,9 @@ Gem::Specification.new do |spec|
   spec.add_dependency "unimidi", "0.3.3"
   spec.add_dependency "eventmachine", "~> 1.0.3"
   spec.add_dependency "rubysl-yaml", "2.0.0"
+  spec.add_dependency "alsa-rawmidi"
+  spec.add_dependency "midi-winmm"
+  spec.add_dependency "midi-jruby"
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
