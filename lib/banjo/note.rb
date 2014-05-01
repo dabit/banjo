@@ -13,6 +13,10 @@ module Banjo
       play if Banjo.tick == tick
     end
 
+    def every(period, offset = 0)
+      play if ((Banjo.tick + offset) % period == 0)
+    end
+
     def with_velocity(velocity)
       self.velocity = velocity
       self

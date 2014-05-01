@@ -21,6 +21,14 @@ class NoteTest < Test::Unit::TestCase
     note.at(2)
   end
 
+  def test_every
+    mock(note).play.times(4)
+    (0..12).each do |i|
+      Banjo.tick = i
+      note.every(4)
+    end
+  end
+
   def test_with_velocity
     assert_equal note, note.with_velocity(3)
     assert_equal 3, note.velocity
