@@ -1,3 +1,4 @@
+[![Build Status](http://allthebadges.io/dabit/banjo/travis.png)](http://allthebadges.io/dabit/banjo/travis)
 [![Code Climate](http://allthebadges.io/dabit/banjo/code_climate.png)](http://allthebadges.io/dabit/banjo/code_climate)
 
 # Banjo
