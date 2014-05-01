@@ -5,6 +5,11 @@ class ChannelTest < Test::Unit::TestCase
     @channel ||= Banjo::Channel.new
   end
 
+  def test_inherited
+    klass = Class.new(Banjo::Channel)
+    assert_includes Banjo::Channel.channels, klass
+  end
+
   def test_channel
     assert_equal 0, channel.channel
   end
@@ -46,5 +51,15 @@ class ChannelTest < Test::Unit::TestCase
     channel.output = stub!
     mock(channel.output).puts(0xB0, 0x7B, 0)
     channel.stfu
+  end
+
+  def test_play_note
+    channel.output = stub!
+    channel.midi_channels.each do |key|
+      mock(channel.output).puts(key, 40, 50)
+    end
+    mock(channel).sleep(0.5)
+
+    channel.play_note!(40)
   end
 end

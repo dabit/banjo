@@ -27,15 +27,11 @@ module Banjo
       @output = UniMIDI::Output.all[channel]
     end
 
-    def tick_notes(notes, velocity = 50, duration = DEFAULT_DURATION)
-      notes.each do |tick, note|
-        tick_note(tick, note, velocity, duration)
-      end
-    end
-
-    def play_note(note, velocity = 50, duration = DEFAULT_DURATION)
-      EM.defer { play_note!(note, velocity, duration) }
-    end
+    #def tick_notes(notes, velocity = 50, duration = DEFAULT_DURATION)
+      #notes.each do |tick, note|
+        #tick_note(tick, note, velocity, duration)
+      #end
+    #end
 
     def modulation(value = 0)
       output.puts 0xB0, 0x01, value
