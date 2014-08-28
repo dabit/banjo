@@ -61,5 +61,6 @@ class ChannelTest < Test::Unit::TestCase
     mock(channel).sleep(0.5)
 
     channel.play_note!(40)
+    channel.threads.each { |t| t.join }
   end
 end
