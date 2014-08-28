@@ -40,7 +40,7 @@ class NoteTest < Test::Unit::TestCase
   end
 
   def test_play
-    mock(channel).play_note!(2, 50, 0.5)
+    mock(channel).play_note!(2, 100, 0.5)
     note.play
   end
 end

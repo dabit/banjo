@@ -61,7 +61,7 @@ module Banjo
       output.puts 0xB0, 0x7B, 0
     end
 
-    def play_note!(note, velocity = 50, duration = DEFAULT_DURATION)
+    def play_note!(note, velocity = 100, duration = DEFAULT_DURATION)
       threads << Thread.new do
         output.puts(midi_channels[0], note, velocity)
         sleep(duration)

@@ -56,7 +56,7 @@ class ChannelTest < Test::Unit::TestCase
   def test_play_note
     channel.output = stub!
     channel.midi_channels.each do |key|
-      mock(channel.output).puts(key, 40, 50)
+      mock(channel.output).puts(key, 40, 100)
     end
     mock(channel).sleep(0.5)
 

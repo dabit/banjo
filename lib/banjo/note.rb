@@ -5,7 +5,7 @@ module Banjo
     def initialize(channel, note)
       self.channel  = channel
       self.note     = note
-      self.velocity = 50
+      self.velocity = 100
       self.duration = 0.5
     end
 

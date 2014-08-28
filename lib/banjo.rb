@@ -41,6 +41,8 @@ module Banjo
       Banjo.tick = 0
       self.loop_count = 0
 
+      p Banjo::Channel.channels
+
       EM.add_periodic_timer(tempo_in_seconds) do
         puts Time.now if (Banjo.tick % 4 == 0)
 
