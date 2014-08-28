@@ -3,6 +3,7 @@ require 'banjo/version'
 require 'eventmachine'
 require 'unimidi'
 
+require 'banjo/keys'
 require 'banjo/channel'
 require 'banjo/note'
 

@@ -1,5 +1,7 @@
 module Banjo
   class Channel
+    include Banjo::Keys
+
     attr_accessor :output
     DEFAULT_DURATION = 0.5
 
