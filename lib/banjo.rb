@@ -41,10 +41,17 @@ module Banjo
       Banjo.tick = 0
       self.loop_count = 0
 
+      # Display available channels
       p Banjo::Channel.channels
 
+      # Shut down all channels
+      Banjo::Channel.channels.each do |channel|
+        channel.new.stfu
+      end
+
       EM.add_periodic_timer(tempo_in_seconds) do
-        puts Time.now if (Banjo.tick % 4 == 0)
+        #puts Time.now if (Banjo.tick % 4 == 0)
+        p Banjo.tick
 
         Banjo.load_channels if Banjo.tick == 0
 
@@ -64,7 +71,7 @@ module Banjo
     if tick < (ticks_per_period - 1)
       tick += 1
     else
-      puts self.loop_count += 1
+      puts "Loop: #{self.loop_count += 1}"
       tick = 0
     end
     tick
