@@ -21,6 +21,26 @@ class ChannelTest < Test::Unit::TestCase
     assert_kind_of Banjo::Note, note
   end
 
+  def test_within_plays
+    Banjo.tick = 1
+    called = false
+    channel.within(0, 2) do
+      called = true
+    end
+
+    assert called, "Given block should be called"
+  end
+
+  def test_within_does_not_play
+    Banjo.tick = 1
+    called = true
+    channel.within(10, 20) do
+      called = false
+    end
+
+    assert called, "Given block should not be called"
+  end
+
   def test_midi_channels
     assert_equal [0x90, 0x80], channel.midi_channels
   end

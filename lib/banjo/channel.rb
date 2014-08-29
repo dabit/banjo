@@ -63,5 +63,11 @@ module Banjo
       output.puts(midi_channels[0], note, velocity)
       EventMachine.add_timer(duration, proc { output.puts(midi_channels[1], note, 100) })
     end
+
+    def within(lower, upper, &block)
+      if(Banjo.tick >= lower && Banjo.tick <= upper)
+        block.call
+      end
+    end
   end
 end
