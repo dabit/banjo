@@ -3,7 +3,6 @@ module Banjo
     include Banjo::Keys
 
     attr_accessor :output
-    attr_accessor :threads
 
     DEFAULT_DURATION = 0.5
 
@@ -29,7 +28,6 @@ module Banjo
 
     def initialize
       @output = UniMIDI::Output.all[channel]
-      self.threads = []
     end
 
     #def tick_notes(notes, velocity = 50, duration = DEFAULT_DURATION)
@@ -62,11 +60,8 @@ module Banjo
     end
 
     def play_note!(note, velocity = 100, duration = DEFAULT_DURATION)
-      threads << Thread.new do
-        output.puts(midi_channels[0], note, velocity)
-        sleep(duration)
-        output.puts(midi_channels[1], note, velocity)
-      end
+      output.puts(midi_channels[0], note, velocity)
+      EventMachine.add_timer(duration, proc { output.puts(midi_channels[1], note, 100) })
     end
   end
 end
