@@ -15,8 +15,20 @@ Install it:
 
 ### Mac OS X
 
-You need to create virtual MIDI IAC inputs. You can learn how to do so by
-watching [this video][1].
+You need to create virtual MIDI IAC inputs.
+
+Open Audio Midi Setup
+
+![](http://monosnap.com/image/u5lWy0g41Qt2JnjJqFp1nPExF9aIK9.png)
+
+Then on the Window Menu click on Show MIDI Window
+
+![](http://monosnap.com/image/TswtEsSbER5dKiB7gLoxEzjptzzjzy.png)
+
+Double Click the IAC Driver icon and press the + where it says Ports, you should
+see something like this:
+
+![](http://monosnap.com/image/D8wQ6wC2SPvhW2fW7f3qjznlUrUV4J.png)
 
 Each one of these inputs will work as a Channel for Banjo.
 
@@ -27,8 +39,14 @@ command:
 
     input:
     0) Apple Inc. IAC Driver
+    2) Apple Inc. IAC Driver
+    4) Apple Inc. IAC Driver
+    6) Apple Inc. IAC Driver
     output:
     1) Apple Inc. IAC Driver
+    3) Apple Inc. IAC Driver
+    5) Apple Inc. IAC Driver
+    7) Apple Inc. IAC Driver
 
 The `unimidi list` command will show you a list of the available IAC drivers
 that can be used with Banjo.
