@@ -31,23 +31,27 @@ module Banjo
     end
   end
 
+  def self.shut_down_all_channels
+    Banjo::Channel.channels.each do |channel|
+      channel.new.stfu
+    end
+  end
+
   def self.play
     Banjo.measures_per_loop ||= 1
     Banjo.ticks_per_period = Banjo.ticks_per_beat * Banjo.beats_per_measure * Banjo.measures_per_loop
-    tempo_in_seconds = (60.0 / Banjo.tempo / Banjo.ticks_per_beat)
-    puts "Tick every: #{tempo_in_seconds} seconds"
+    tempo_in_seconds       = (60.0 / Banjo.tempo / Banjo.ticks_per_beat)
+    p "Tick every: #{tempo_in_seconds} seconds"
 
     EventMachine.run do
-      Banjo.tick = 0
+      Banjo.tick      = 0
       self.loop_count = 0
 
       # Display available channels
       p Banjo::Channel.channels
 
       # Shut down all channels
-      Banjo::Channel.channels.each do |channel|
-        channel.new.stfu
-      end
+      shut_down_all_channels
 
       EM.add_periodic_timer(tempo_in_seconds) do
         #puts Time.now if (Banjo.tick % 4 == 0)
