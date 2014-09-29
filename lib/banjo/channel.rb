@@ -14,7 +14,7 @@ module Banjo
       Note.new(self, note)
     end
 
-    def midi_channels
+    def midi_messages
       [0x90, 0x80]
     end
 
@@ -54,8 +54,8 @@ module Banjo
     end
 
     def play_note!(note, velocity = 100, duration = DEFAULT_DURATION)
-      output.puts(midi_channels[0], note, velocity)
-      EventMachine.add_timer(duration, proc { output.puts(midi_channels[1], note, 100) })
+      output.puts(midi_messages[0], note, velocity)
+      EventMachine.add_timer(duration, proc { output.puts(midi_messages[1], note, 100) })
     end
 
     def within(lower, upper, &block)

@@ -41,8 +41,8 @@ class ChannelTest < Test::Unit::TestCase
     assert called, "Given block should not be called"
   end
 
-  def test_midi_channels
-    assert_equal [0x90, 0x80], channel.midi_channels
+  def test_midi_messages
+    assert_equal [0x90, 0x80], channel.midi_messages
   end
 
   def test_channels
@@ -72,14 +72,4 @@ class ChannelTest < Test::Unit::TestCase
     mock(channel.output).puts(0xB0, 0x7B, 0)
     channel.stfu
   end
-
-  #def test_play_note
-    #channel.output = stub!
-    #channel.midi_channels.each do |key|
-      #mock(channel.output).puts(key, 40, 100)
-    #end
-    #mock(channel).sleep(0.5)
-
-    #channel.play_note!(40)
-  #end
 end
