@@ -31,7 +31,7 @@ module Banjo
     end
   end
 
-  def self.shut_down_all_channels
+  def self.hush_all
     Banjo::Channel.channels.each do |channel|
       channel.new.hush
     end
@@ -51,7 +51,7 @@ module Banjo
       p Banjo::Channel.channels
 
       # Shut down all channels
-      shut_down_all_channels
+      hush_all
 
       EM.add_periodic_timer(tempo_in_seconds) do
         #puts Time.now if (Banjo.tick % 4 == 0)
