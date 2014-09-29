@@ -67,9 +67,9 @@ class ChannelTest < Test::Unit::TestCase
     channel.sustain(100)
   end
 
-  def test_stfu
+  def test_hush
     channel.output = stub!
     mock(channel.output).puts(0xB0, 0x7B, 0)
-    channel.stfu
+    channel.hush
   end
 end

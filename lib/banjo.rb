@@ -33,7 +33,7 @@ module Banjo
 
   def self.shut_down_all_channels
     Banjo::Channel.channels.each do |channel|
-      channel.new.stfu
+      channel.new.hush
     end
   end
 

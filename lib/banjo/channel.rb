@@ -49,7 +49,7 @@ module Banjo
       end
     end
 
-    def stfu
+    def hush
       output.puts 0xB0, 0x7B, 0
     end
 

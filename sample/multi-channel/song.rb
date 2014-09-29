@@ -5,7 +5,7 @@ require 'banjo'
 
 Banjo.load_channels!
 Banjo::Channel.channels.each do |c|
-  c.new(0).stfu
+  c.new(0).hush
 end
 Banjo.tempo             = 110
 Banjo.ticks_per_beat    = 8.0
