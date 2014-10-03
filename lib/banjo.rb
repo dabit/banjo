@@ -39,9 +39,9 @@ module Banjo
 
   def self.play
     Banjo.measures_per_loop ||= 1
-    Banjo.ticks_per_period = Banjo.ticks_per_beat * Banjo.beats_per_measure * Banjo.measures_per_loop
-    tempo_in_seconds       = (60.0 / Banjo.tempo / Banjo.ticks_per_beat)
-    p "Tick every: #{tempo_in_seconds} seconds"
+    Banjo.ticks_per_period    = Banjo.ticks_per_beat * Banjo.beats_per_measure * Banjo.measures_per_loop
+    poll_rate                 = (60.0 / Banjo.tempo / Banjo.ticks_per_beat)
+    p "Tick every: #{poll_rate} seconds"
 
     EventMachine.run do
       Banjo.tick      = 0
@@ -53,7 +53,7 @@ module Banjo
       # Shut down all channels
       hush_all
 
-      EM.add_periodic_timer(tempo_in_seconds) do
+      EM.add_periodic_timer(poll_rate) do
         #puts Time.now if (Banjo.tick % 4 == 0)
         p Banjo.tick
 
