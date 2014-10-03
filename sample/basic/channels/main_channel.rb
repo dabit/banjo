@@ -14,37 +14,33 @@ class MainChannel < Banjo::Channel
     # tick_note 24, 47 # B
     # tick_note 28, 48 # C
 
-    tick_note 0, 36
-    tick_note 8, 36
+    play(36).at(0)
+    play(36).at(8)
 
-    tick_note 16, 43
-    tick_note 24, 43
+    play(43).at(16)
+    play(43).at(24)
 
-    tick_note 32, 45
-    tick_note 40, 45
+    play(45).at(32)
+    play(45).at(40)
 
-    tick_note 48, 43
+    play(43).at(48)
 
-    tick_note 64, 41
-    tick_note 72, 41
+    play(41).at(64)
+    play(41).at(72)
 
-    tick_note 80, 40
-    tick_note 88, 40
+    play(40).at(80)
+    play(40).at(88)
 
-    tick_note 96, 38
-    tick_note 104, 38
+    play(38).at(96)
+    play(38).at(104)
 
-    tick_note 112, 36
+    play(36).at(112)
+
 
     #
     # Will play note 36 on every tick divisible by 4
     # with a 0 offset and velocity of 40
     #
-    mod_note(4, 36, 0, 40)
-    mod_note(8, 40)
-    mod_note(12, 43)
-    mod_note(16, 38)
-    mod_note(32, 127, 0, 50)
-    mod_note(124, 55)
+    play(36).every(4)
   end
 end
